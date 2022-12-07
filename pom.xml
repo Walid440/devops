@@ -58,5 +58,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
+<finalName>DevOps</finalName>
 </project>
