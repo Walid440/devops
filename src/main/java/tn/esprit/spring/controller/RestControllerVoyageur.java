@@ -73,19 +73,19 @@ public class RestControllerVoyageur {
 
     //////URL : http://localhost:8083/SpringMVC/servlet/TrainPlacesLibres/TUNIS
     @GetMapping(value = "/TrainPlacesLibres/{nomgdpt}")
-    public int TrainPlacesLibres(@PathVariable("nomgdpt") Ville nomGareDepart) {
-        System.out.println("in controller" + nomGareDepart);
-        return itrainservice.TrainPlacesLibres(nomGareDepart);
+    public int TrainPlacesLibres(@PathVariable("nomgdpt") String nomGareDepart) {
+        System.out.println("in controller" + Ville.valueOf(nomGareDepart.toUpperCase()));
+        return itrainservice.TrainPlacesLibres(Ville.valueOf(nomGareDepart.toUpperCase()));
     }
 
     @RequestMapping(value = "/ListerTrainsIndirects/{nomgdpt}/{nomgarr}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Train> ListerTrainsIndirects(@PathVariable("nomgdpt") Ville nomGareDepart, @PathVariable("nomgarr") Ville nomGareArrivee) {
-        return itrainservice.ListerTrainsIndirects(nomGareDepart, nomGareArrivee);
+    public List<Train> ListerTrainsIndirects(@PathVariable("nomgdpt") String nomGareDepart, @PathVariable("nomgarr") String nomGareArrivee) {
+        return itrainservice.ListerTrainsIndirects(Ville.valueOf(nomGareDepart.toUpperCase()), Ville.valueOf(nomGareArrivee.toUpperCase()));
     }
 
     @PutMapping(value = "/DesaffecterVoyageursTrain/{nomgdpt}/{heuredept}")
-    public void DesaffecterVoyageursTrain(@PathVariable("nomgdpt") Ville nomGareDepart, @PathVariable("nomgarr") Ville nomGareArrivee, @PathVariable("heuredept") double heureDepart) {
-        itrainservice.DesaffecterVoyageursTrain(nomGareDepart, nomGareArrivee, heureDepart);
+    public void DesaffecterVoyageursTrain(@PathVariable("nomgdpt") String nomGareDepart, @PathVariable("nomgarr") String nomGareArrivee, @PathVariable("heuredept") double heureDepart) {
+        itrainservice.DesaffecterVoyageursTrain(Ville.valueOf(nomGareDepart.toUpperCase()), Ville.valueOf(nomGareDepart.toUpperCase()), heureDepart);
     }
 
 }
